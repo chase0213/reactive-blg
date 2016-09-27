@@ -1,0 +1,63 @@
+<article>
+  <nav [ngClass]="{'active': isNavigationActive, 'inactive': !isNavigationActive}">
+    <div class="team">
+      <div *ngFor="let teamId of [1,2]" class="team-{{teamId}}">
+        <h3>
+          <md-checkbox [(ngModel)]="_data.display.team[teamId].team" (change)="onChangeTeam(teamId)">{{team[teamId].name}}</md-checkbox>
+        </h3>
+        <div class="row members">
+          <md-checkbox *ngFor="let id of memberIds[teamId]" [(ngModel)]="_data.display.team[teamId].member[id]">#{{id}} {{team[teamId].members[id].name}}</md-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="game">
+      <div class="row">
+        <md-radio-group [(ngModel)]="quarter">
+          <md-radio-button value="1">1st</md-radio-button>
+          <md-radio-button value="2">2nd</md-radio-button>
+          <md-radio-button value="3">3rd</md-radio-button>
+          <md-radio-button value="4">4th</md-radio-button>
+        </md-radio-group>
+      </div>
+
+      <div class="row">
+        <md-checkbox *ngFor="let play of _data.plays" [(ngModel)]="_data.display[play]">{{play}}</md-checkbox>
+      </div>
+
+      <div class="row">
+        <md-input type="number" [(ngModel)]="speed" placeholder="speed [times]" step="1"></md-input>
+      </div>
+    </div>
+  </nav>
+
+  <div class="actions">
+    <div class="row">
+      <a md-raised-button class="md-warn" (click)="onClickUnsubscribe()">Unsubscribe</a>
+      <a md-raised-button class="md-primary" (click)="onClickSubscribe()">Subscribe</a>
+    </div>
+  </div>
+
+  <section>
+
+    <h3>{{_data.getLatestPlay().attempt}} {{_data.getLatestPlay().result}}</h3>
+    <ul>
+      <li *ngFor="let action of actions">
+        <span class="action team-1" [ngClass]="{'hidden': action.team !== 1}">
+          {{_data.getPlayerNameFromAction(action)}}
+          {{action.attempt}}<i class="result" [ngClass]="{'success': action.result === 'success', 'failure': action.result === 'failure'}"></i>
+        </span>
+
+        <span class="time">
+          {{action.time}}
+        </span>
+
+        <span class="action team-2" [ngClass]="{'hidden': action.team !== 2}">
+          {{_data.getPlayerNameFromAction(action)}}
+          {{action.attempt}}<i class="result" [ngClass]="{'success': action.result === 'success', 'failure': action.result === 'failure'}"></i>
+        </span>
+      </li>
+    </ul>
+
+  </section>
+</article>

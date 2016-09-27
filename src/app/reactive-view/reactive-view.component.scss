@@ -1,0 +1,129 @@
+$black-color: #000000;
+$golden-color: #b5a642;
+$red-color: #800020;
+$gray-color: #aaaaaa;
+$white-color: #ffffff;
+$light-gray-color: #f0f0f0;
+
+nav {
+  background: $light-gray-color;
+  box-shadow: 0 1px 3px 0 $gray-color;
+  transition-duration: 0.4s;
+  transition-property: opacity, transform;
+
+  .team {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .team-1, .team-2 {
+      padding: 1em;
+
+      @media (min-width: 769px) {
+        max-width: 50%;
+      }
+    }
+
+    .team-1 {
+      background: rgba($red-color, 0.4);
+      color: $white-color;
+    }
+
+    .team-2 {
+      background: rgba($golden-color, 0.4);
+    }
+
+    .members {
+      md-checkbox {
+        display: inline-block;
+
+        @media (min-width: 769px) {
+          min-width: 50%;
+        }
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .game {
+    padding: 1em;
+
+    .row {
+      margin: 1em 0;
+    }
+  }
+
+  &.active {
+    opacity: 1;
+    position: relative;
+    transform: translateY(0);
+  }
+
+  &.inactive {
+    opacity: 0;
+    position: absolute;
+    transform: translateY(-102%);
+  }
+}
+
+.actions {
+  padding: 1em;
+  text-align: right;
+}
+
+section {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      box-shadow: 0 1px 3px $gray-color;
+      display: table;
+      padding: 0.4em;
+      table-layout: fixed;
+      text-align: center;
+      width: 100%;
+
+      span {
+        display: table-cell;
+
+        &.hidden {
+          opacity: 0;
+        }
+      }
+
+      .time {
+        background: $light-gray-color;
+        vertical-align: middle;
+        width: 64px;
+      }
+
+      .team-1 {
+        color: $red-color;
+      }
+
+      .team-2 {
+        color: $golden-color;
+      }
+
+      .result {
+        &.success::before {
+          content: "◯";
+          font-style: normal;
+          margin: 0 0.2em;
+        }
+
+        &.failure::before {
+          content: "×";
+          font-style: normal;
+          margin: 0 0.2em;
+        }
+      }
+    }
+  }
+}

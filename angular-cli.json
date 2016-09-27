@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.14",
+    "version": "1.0.0",
     "name": "reactive-blg"
   },
   "apps": [
@@ -15,7 +15,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [],
       "environments": {
@@ -38,7 +38,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false
   }
 }
